@@ -1,12 +1,15 @@
 (require 'package)
-(require 'req-package)
 
 ; Add MELPA repository
-(add-to-list 'package-archives
-  '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
+(require 'req-package)
+
 (setq backup-directory-alist `(("." . "~/.saves")))
+
+(load-theme 'material t)
 
 ;; Haskell
 (req-package haskell-mode
