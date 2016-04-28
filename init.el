@@ -7,6 +7,9 @@
 
 (require 'req-package)
 
+(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+(setq exec-path (append exec-path '("/usr/local/bin")))
+
 (setq backup-directory-alist `(("." . "~/.saves")))
 
 (load-theme 'material t)
@@ -31,3 +34,5 @@
     (setq haskell-process-auto-import-loaded-modules t)
     (setq haskell-process-log nil)
     (setq haskell-stylish-on-save t)))
+
+(req-package-finish)
