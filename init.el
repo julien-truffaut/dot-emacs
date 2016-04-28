@@ -13,8 +13,9 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 
 (load-theme 'material t)
-(add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(width . 150))
+(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(width . 160))
+(setq initial-frame-alist '((left . 100) (top . 80)))
 
 ;; Haskell
 (req-package haskell-mode
