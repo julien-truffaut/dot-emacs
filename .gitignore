@@ -3,5 +3,6 @@ anaconda-mode/*
 elpa/*
 cache/*
 eshell/*
+auto-save-list/*
 *.elc
 *.eld
