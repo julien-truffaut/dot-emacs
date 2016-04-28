@@ -35,4 +35,11 @@
     (setq haskell-process-log nil)
     (setq haskell-stylish-on-save t)))
 
+;; Scala
+
+
+(use-package ensime
+  :commands ensime ensime-mode)
+ (add-hook 'scala-mode-hook 'ensime-mode)
+
 (req-package-finish)
