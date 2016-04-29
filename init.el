@@ -31,3 +31,4 @@
 (require 'j-package)
 (require 'j-haskell)
 (require 'j-purescript)
+(require 'j-scala)
