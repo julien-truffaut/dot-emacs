@@ -1,11 +1,21 @@
-(require 'package)
-
-; Add MELPA repository
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Initialise the package system first of all.
 (package-initialize)
 
-(require 'req-package)
+;; Skip the default splash screen.
+(setq inhibit-startup-message t)
+
+;; Figure out the current hostname.
+(setq hostname (replace-regexp-in-string "\\(^[[:space:]\n]*\\|[[:space:]\n]*$\\)" "" (with-output-to-string (call-process "hostname" nil standard-output))))
+
+;; Figure out the path to our .emacs.d by getting the path part of the
+;; current file (`init.el`).
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) (file-chase-links load-file-name))))
+
+;; load all .el files from modules dir
+(add-to-list 'load-path (concat dotfiles-dir "modules"))
+
+
 
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -17,28 +27,7 @@
 (add-to-list 'default-frame-alist '(width . 160))
 (setq initial-frame-alist '((left . 100) (top . 80)))
 
-;; Haskell
-(req-package haskell-mode
-  :config (progn
-    (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
-    (add-hook 'haskell-mode-hook 'haskell-doc-mode)
-    (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-    (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-    (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
-    (add-hook 'haskell-mode-hook (lambda ()
-				   (electric-indent-local-mode -1)))
-    (setq haskell-process-type 'stack-ghci)
-    (setq haskell-process-path-ghci "stack")
-    (setq haskell-process-args-ghci '("ghci"))
 
-    (setq haskell-process-suggest-remove-import-lines t)
-    (setq haskell-process-auto-import-loaded-modules t)
-    (setq haskell-process-log nil)
-    (setq haskell-stylish-on-save t)))
-
-;; Scala
-(use-package ensime
-  :commands ensime ensime-mode)
- (add-hook 'scala-mode-hook 'ensime-mode)
-
-(req-package-finish)
+;; Load the Ohai Emacs fundamentals.
+(require 'j-package)
+(require 'j-haskell)
