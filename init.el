@@ -28,6 +28,6 @@
 (setq initial-frame-alist '((left . 100) (top . 80)))
 
 
-;; Load the Ohai Emacs fundamentals.
 (require 'j-package)
 (require 'j-haskell)
+(require 'j-purescript)
